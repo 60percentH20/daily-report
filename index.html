@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Daily Report</title>
+
+<style>
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #f2f4f7;
+    margin: 0;
+    padding: 20px;
+    color: #333;
+}
+
+.container {
+    max-width: 900px;
+    margin: auto;
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+}
+
+.header {
+    background: #0b3d91;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    margin: 0;
+}
+
+.section {
+    margin-bottom: 20px;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+.section h2 {
+    margin-top: 0;
+    color: #0b3d91;
+    font-size: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.field {
+    flex: 1;
+    min-width: 200px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 150px;
+    resize: vertical;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th {
+    background: #0b3d91;
+    color: white;
+}
+
+td, th {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: center;
+}
+
+button {
+    background: #0b3d91;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #06275e;
+}
+
+.photo-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.photo-preview img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+}
+
+.print-button {
+    text-align: center;
+    margin-top: 25px;
+}
+
+
+/* Print formatting */
+
+@media print {
+
+    body {
+        background: white;
+        padding: 0;
+    }
+
+    .container {
+        box-shadow: none;
+        width: 8.5in;
+        min-height: 11in;
+    }
+
+    button,
+    input[type="file"] {
+        display: none;
+    }
+
+    .section {
+        page-break-inside: avoid;
+    }
+
+}
+
+@media(max-width:600px){
+
+    body {
+        padding: 10px;
+    }
+
+    .container {
+        padding: 15px;
+    }
+
+    .field {
+        min-width: 100%;
+    }
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<div class="header">
+    <h1>Daily Report</h1>
+</div>
+
+
+<div class="section">
+
+<h2>Report Information</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Report Number</label>
+<input type="text">
+</div>
+
+<div class="field">
+<label>Date</label>
+<input type="date">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="section">
+
+<h2>Project Information</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Project Name</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>Project Number</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>Project Location</label>
+<input type="text">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="section">
+
+<h2>Weather</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Conditions</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>High Temperature</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>Low Temperature</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>Wind</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>Gust</label>
+<input type="text">
+</div>
+
+
+<div class="field">
+<label>Precipitation</label>
+<input type="text">
+</div>
+
+</div>
+
+</div>
+<div class="section">
+
+<h2>Shift</h2>
+
+<div class="row">
+
+<div class="field">
+<label>Shift Start Time</label>
+<input type="time">
+</div>
+
+<div class="field">
+<label>Shift End Time</label>
+<input type="time">
+</div>
+
+</div>
+
+</div>
+
+
+
+<div class="section">
+
+<h2>Labor</h2>
+
+<table id="laborTable">
+
+<tr>
+<th>Company</th>
+<th>Workers</th>
+<th>Hours</th>
+</tr>
+
+<tr>
+<td><input type="text"></td>
+<td><input type="number"></td>
+<td><input type="number"></td>
+</tr>
+
+</table>
+
+<button onclick="addLaborRow()">+ Add Company</button>
+
+</div>
+
+
+
+
+<div class="section">
+
+<h2>Work Completed</h2>
+
+<textarea placeholder="Describe work completed today..."></textarea>
+
+</div>
+
+
+
+
+<div class="section">
+
+<h2>Photos</h2>
+
+<input 
+type="file" 
+accept="image/*" 
+multiple 
+onchange="previewPhotos(event)">
+
+<div id="photoPreview" class="photo-preview"></div>
+
+</div>
+
+
+
+
+<div class="print-button">
+
+<button onclick="window.print()">
+Print Report
+</button>
+
+</div>
+
+
+</div>
+
+
+
+<script>
+
+
+function addLaborRow(){
+
+    let table = document.getElementById("laborTable");
+
+    let row = table.insertRow(-1);
+
+    let company = row.insertCell(0);
+    let workers = row.insertCell(1);
+    let hours = row.insertCell(2);
+
+
+    company.innerHTML = '<input type="text">';
+    workers.innerHTML = '<input type="number">';
+    hours.innerHTML = '<input type="number">';
+
+}
+
+
+
+function previewPhotos(event){
+
+    let preview = document.getElementById("photoPreview");
+
+    preview.innerHTML = "";
+
+
+    let files = event.target.files;
+
+
+    for(let i = 0; i < files.length; i++){
+
+        let reader = new FileReader();
+
+
+        reader.onload = function(e){
+
+            let img = document.createElement("img");
+
+            img.src = e.target.result;
+
+            preview.appendChild(img);
+
+        }
+
+
+        reader.readAsDataURL(files[i]);
+
+    }
+
+}
+
+
+</script>
+
+
+</body>
+</html>
